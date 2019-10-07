@@ -1,0 +1,12 @@
+FMain
+Gambas Gui Gtk3
+0
+0
+0.0.7
+
+gb.image
+gb.gtk3
+gb.form
+gb.settings
+gb.form.mdi
+
