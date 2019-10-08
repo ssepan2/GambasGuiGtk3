@@ -5,6 +5,20 @@
   Icon = Picture["icon:/32/gnu"]
   { MenuFile Menu
     Text = Shortcut(("File"), "F")
+    { MenuFileNew Menu
+      Text = Shortcut(("New"), "N")
+    }
+    { MenuFileOpen Menu
+      Text = Shortcut(("Open"), "O") & "..."
+    }
+    { MenuFileSave Menu
+      Text = Shortcut(("Save"), "S")
+    }
+    { MenuFileSaveAs Menu
+      Text = Shortcut(("Save As"), "a") & "..."
+    }
+    { Menu1 Menu
+    }
     { MenuFileExit Menu
       Text = Shortcut(("Exit"), "x")
     }
@@ -17,7 +31,7 @@
   }
   { Label1 Label
     MoveScaled(6,42,24,4)
-    Text = ("type something")
+    Text = ("type something -->")
   }
   { TextBox1 TextBox
     MoveScaled(32,41,24,4)
@@ -31,19 +45,18 @@
     Border = Border.Sunken
     { StatusLabel Label
       MoveScaled(1,1,31,3)
-      Text = ("SomeStatus")
     }
-    { PictureBox1 PictureBox
-      MoveScaled(58,1,4,4)
+    { StatusPictureBox PictureBox
+      MoveScaled(58,1,4,3)
       AutoResize = True
-      Picture = Picture["icon:/22/floppy"]
     }
-    { ProgressBar1 ProgressBar
+    { StatusProgressBar ProgressBar
       MoveScaled(33,1,24,3)
     }
   }
   { ToolBar1 ToolBar
     MoveScaled(1,0,62,4)
+    Separator = True
     { ToolButtonFileNew ToolButton
       MoveScaled(1,0,3,4)
       ToolTip = ("New")
@@ -52,9 +65,21 @@
     }
     { ToolButtonFileOpen ToolButton
       MoveScaled(4,0,4,4)
-      ToolTip = ("New")
+      ToolTip = ("Open")
       AutoResize = True
       Picture = Picture["icon:/22/open"]
+    }
+    { ToolButtonFileSave ToolButton
+      MoveScaled(7,0,4,4)
+      ToolTip = ("Save")
+      AutoResize = True
+      Picture = Picture["icon:/22/save"]
+    }
+    { ToolButtonFileSaveAs ToolButton
+      MoveScaled(10,0,4,4)
+      ToolTip = ("Save As") & "..."
+      AutoResize = True
+      Picture = Picture["icon:/22/save-as"]
     }
   }
 }
