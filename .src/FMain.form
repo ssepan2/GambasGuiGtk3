@@ -2,7 +2,10 @@
 
 { Form Form
   MoveScaled(0,0,64,64)
+  Expand = True
   Icon = Picture["icon:/32/gnu"]
+  AutoResize = True
+  Padding = 8
   { MenuFile Menu
     Text = Shortcut(("File"), "F")
     { MenuFileNew Menu
@@ -29,26 +32,10 @@
       Text = Shortcut(("About"), "A")
     }
   }
-  { ButtonClose Button
-    MoveScaled(45,50,16,4)
-    Text = ("Close")
-  }
-  { Panel1 Panel
-    MoveScaled(1,55,62,5)
-    Border = Border.Sunken
-    { StatusLabel Label
-      MoveScaled(1,1,31,3)
-    }
-    { StatusPictureBox PictureBox
-      MoveScaled(58,1,4,3)
-      AutoResize = True
-    }
-    { StatusProgressBar ProgressBar
-      MoveScaled(33,1,24,3)
-    }
-  }
   { ToolBar1 ToolBar
     MoveScaled(1,0,62,4)
+    Expand = True
+    AutoResize = False
     Separator = True
     { ToolButtonFileNew ToolButton
       MoveScaled(1,0,3,4)
@@ -75,13 +62,13 @@
       Picture = Picture["icon:/22/save-as"]
     }
   }
-  { SomeStringTextBox TextBox
-    MoveScaled(15,6,24,4)
-  }
   { SomeStringLabel Label
     MoveScaled(2,6,12,4)
     Text = ("Some String:")
     Alignment = Align.Right
+  }
+  { SomeStringTextBox TextBox
+    MoveScaled(15,6,24,4)
   }
   { SomeIntegerLabel Label
     MoveScaled(2,11,12,4)
@@ -99,5 +86,33 @@
     MoveScaled(2,16,12,4)
     Text = ("Some Boolean:")
     Alignment = Align.Right
+  }
+  { HBox1 HBox
+    MoveScaled(2,48,60,4)
+    Expand = True
+    AutoResize = True
+    { Spring1 Spring
+      MoveScaled(10,1,4,3)
+    }
+    { ButtonClose Button
+      MoveScaled(44,0,16,4)
+      Text = ("Close")
+    }
+  }
+  { Panel1 Panel
+    MoveScaled(1,55,62,5)
+    Expand = True
+    AutoResize = True
+    Border = Border.Sunken
+    { StatusLabel Label
+      MoveScaled(1,1,31,3)
+    }
+    { StatusPictureBox PictureBox
+      MoveScaled(58,1,4,3)
+      AutoResize = True
+    }
+    { StatusProgressBar ProgressBar
+      MoveScaled(33,1,24,3)
+    }
   }
 }
