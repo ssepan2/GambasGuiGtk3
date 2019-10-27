@@ -1,0 +1,78 @@
+# Gambas Action File 3.0
+
+{ Actions
+  { Action EditCopy
+    Text = "Copy"
+    Shortcut = "Ctrl+C"
+    Picture = "icon:/22/copy"
+  }
+  { Action EditCut
+    Text = "Cut"
+    Shortcut = "Ctrl+X"
+    Picture = "icon:/22/cut"
+  }
+  { Action EditDelete
+    Text = "Delete"
+    Shortcut = "Del"
+    Picture = "icon:/22/delete"
+  }
+  { Action EditFind
+    Text = "Find"
+    Shortcut = "Ctrl+F"
+    Picture = "icon:/22/find"
+  }
+  { Action EditPaste
+    Text = "Paste"
+    Shortcut = "Ctrl+V"
+    Picture = "icon:/22/paste"
+  }
+  { Action EditPreferences
+    Text = "Preferences"
+    Shortcut = ""
+    Picture = "icon:/22/properties"
+  }
+  { Action EditRedo
+    Text = "Redo"
+    Shortcut = "Ctrl+Y"
+    Picture = "icon:/22/redo"
+  }
+  { Action EditRefresh
+    Text = "Refresh"
+    Shortcut = "F5"
+    Picture = "icon:/22/refresh"
+  }
+  { Action EditUndo
+    Text = "Undo"
+    Shortcut = "Ctrl+Z"
+    Picture = "icon:/22/undo"
+  }
+  { Action FileExit
+    Text = "Exit"
+    Shortcut = ""
+  }
+  { Action FileNew
+    Text = "New"
+    Shortcut = ""
+    Picture = "icon:/22/new"
+  }
+  { Action FileOpen
+    Text = "Open"
+    Shortcut = ""
+    Picture = "icon:/22/open"
+  }
+  { Action FilePrint
+    Text = "Print"
+    Shortcut = ""
+    Picture = "icon:/22/print"
+  }
+  { Action FileSave
+    Text = "Save"
+    Picture = "icon:/22/save"
+  }
+  { Action FileSaveAs
+    Text = "Save As"
+    Shortcut = ""
+    Picture = "icon:/22/save-as"
+  }
+}
+
