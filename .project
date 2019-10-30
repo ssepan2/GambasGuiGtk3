@@ -1,7 +1,7 @@
 # Gambas Project File 3.0
 Title=Gambas Gui Gtk3
 Startup=Main
-Version=0.0.20
+Version=0.0.21
 Component=gb.args
 Component=gb.image
 Component=gb.gtk3
