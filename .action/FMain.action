@@ -48,21 +48,21 @@
   }
   { Action FileExit
     Text = "Exit"
-    Shortcut = ""
+    Shortcut = "Ctrl+Q"
   }
   { Action FileNew
     Text = "New"
-    Shortcut = ""
+    Shortcut = "Ctrl+N"
     Picture = "icon:/22/new"
   }
   { Action FileOpen
     Text = "Open"
-    Shortcut = ""
+    Shortcut = "Ctrl+O"
     Picture = "icon:/22/open"
   }
   { Action FilePrint
     Text = "Print"
-    Shortcut = ""
+    Shortcut = "Ctrl+P"
     Picture = "icon:/22/print"
   }
   { Action FileSave
