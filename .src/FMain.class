@@ -1,8 +1,12 @@
 ' Gambas class file
 
 ' #Region "Declarations"
-Private _model As SomeModel = Null
+Private $objModel As SomeModel = Null
 Private $bStopControlEvents As Boolean = False
+Private $objStatusBarDock As Dock
+Private $objHBoxFormButtonsAnchor As Anchor
+Private $objToolBarActionsDock As Dock
+Private $objPanelTestAnchor As Anchor
 ' #End Region
 
 ' #Region "Constructors"
@@ -18,27 +22,27 @@ Public $obsPropertyChanged As Observer
 ''' <summary>
 ''' Handler for PropertyChanged on the Settings field 'Dirty'.
 ''' </summary>
-Public Sub _model_PropertyChanged(propertyName As String)
+Public Sub $objModel_PropertyChanged(propertyName As String)
 
     $bStopControlEvents = True
-
+    'TODO:consider using Object.Lock(controlname)/Object.Unlock(controlname)
     Select propertyName
         Case "SomeString"
-            SomeStringTextBox.text = _model.SomeString
-            Debug propertyName & ": " & _model.SomeString
+            SomeStringTextBox.text = $objModel.SomeString
+            ' Debug Subst("&1: &2", propertyName, $objModel.SomeString)
         Case "SomeInteger"
-            SomeIntegerValueBox.value = _model.SomeInteger
-            Debug propertyName & ": " & _model.SomeInteger
+            SomeIntegerValueBox.value = $objModel.SomeInteger
+            ' Debug Subst("&1: &2", propertyName, $objModel.SomeInteger)
         Case "SomeBoolean"
-            SomeBooleanCheckBox.Value = _model.SomeBoolean
-            Debug propertyName & ": " & _model.SomeBoolean
+            SomeBooleanCheckBox.Value = $objModel.SomeBoolean
+            ' Debug Subst("&1: &2", propertyName, $objModel.SomeBoolean)
         Case "Dirty"
-            StatusDirtyIcon.Visible = _model.Dirty
-            Debug propertyName & ": " & _model.Dirty
+            StatusDirtyIcon.Visible = $objModel.Dirty
+            ' Debug Subst("&1: &2", propertyName, $objModel.Dirty)
         Case Else
             Debug "unhandled event:" & propertyName
     End Select
-    Debug "PropertyChanged handled: " & propertyName
+    ' Debug Subst("PropertyChanged handled: &1", propertyName)
 Finally
     $bStopControlEvents = False
 Catch
@@ -58,6 +62,12 @@ End
 '
 
 Public Sub Form_Open()
+
+    $objToolBarActionsDock = New Dock(ToolBarActions, Me, True, Dock.DockTop)
+    $objStatusBarDock = New Dock(PanelStatusBar, Me, True, Dock.DockBottom)
+
+    $objHBoxFormButtonsAnchor = New Anchor(HBoxFormButtons, Me, True, Anchor.AnchorLeft + Anchor.AnchorBottom + Anchor.AnchorRight)
+    $objPanelTestAnchor = New Anchor(PanelTest, Me, True, Anchor.AnchorLeft + Anchor.AnchorRight + Anchor.AnchorTop + Anchor.AnchorBottom)
 
     Me.Top = Settings["FMain/Top", Me.Top]
     Me.Left = Settings["FMain/Left", Me.Left]
@@ -80,9 +90,24 @@ Public Sub Form_Close()
     Settings["FMain/Height"] = Me.Height
     Settings["FMain/Width"] = Me.Width
 
+    $objHBoxFormButtonsAnchor = Null
+    $objPanelTestAnchor = Null
+
+    $objStatusBarDock = Null
+    $objToolBarActionsDock = Null
 Catch
     Debug Log.FormatError
     Debug Error.Text
+
+End
+
+Public Sub Form_Resize()
+
+    $objToolBarActionsDock.Apply
+    $objStatusBarDock.Apply
+
+    $objPanelTestAnchor.Apply
+    $objHBoxFormButtonsAnchor.Apply
 
 End
 
@@ -286,7 +311,7 @@ Public Sub SomeStringTextBox_Change()
     If $bStopControlEvents Then
         Stop Event
     Else
-        _model.SomeString = SomeStringTextBox.text
+        $objModel.SomeString = SomeStringTextBox.text
     Endif
 
 End
@@ -296,7 +321,7 @@ Public Sub SomeIntegerValueBox_Change()
     If $bStopControlEvents Then
         Stop Event
     Else
-        _model.SomeInteger = SomeIntegerValueBox.Value
+        $objModel.SomeInteger = SomeIntegerValueBox.Value
     Endif
 
 End
@@ -306,7 +331,7 @@ Public Sub SomeBooleanCheckBox_Click()
     If $bStopControlEvents Then
         Stop Event
     Else
-        _model.SomeBoolean = SomeBooleanCheckBox.Value
+        $objModel.SomeBoolean = SomeBooleanCheckBox.Value
     Endif
 
 End
@@ -320,10 +345,10 @@ Public Sub FileNew()
     Dim bCancel As Boolean = False
     Dim sStatusMessage As String
 
-    If Not IsNull(_model) Then
-        If _model.Dirty Then
+    If Not IsNull($objModel) Then
+        If $objModel.Dirty Then
             'prompt before saving
-            Select Case Message.Question("Save changes?:" & _model.Key, "&Yes", "&No", "&Cancel")
+            Select Case Message.Question("Save changes?:" & $objModel.Key, "&Yes", "&No", "&Cancel")
                 Case 1
                     'Yes, SAVE
                     FileSave
@@ -348,9 +373,9 @@ Public Sub FileNew()
         sStatusMessage = "New cancelled."
     Else
         'NEW
-        _model = New SomeModel(Me, "_model")
+        $objModel = New SomeModel(Me, "$objModel")
 
-        _model.RefreshModel
+        $objModel.RefreshModel
         StopProgressBar("New completed")
         sStatusMessage = "New completed"
     Endif
@@ -372,10 +397,10 @@ Public Sub FileOpen()
     Dim sStatusMessage As String
     ' Dim sErrormessage As String
 
-    If Not IsNull(_model) Then
-        If _model.Dirty Then
+    If Not IsNull($objModel) Then
+        If $objModel.Dirty Then
             'prompt before saving
-            Select Case Message.Question("Save changes?:" & _model.Key, "&Yes", "&No", "&Cancel")
+            Select Case Message.Question("Save changes?:" & $objModel.Key, "&Yes", "&No", "&Cancel")
                 Case 1
                     'Yes, SAVE
                     FileSave(True)
@@ -401,7 +426,7 @@ Public Sub FileOpen()
     Else
         response = InputBox("Enter Name for model:", "Open...", Null)
         If Not IsNull(response) Then
-            _model.Key = response
+            $objModel.Key = response
         Else
             bCancel = True
         Endif
@@ -410,13 +435,13 @@ Public Sub FileOpen()
             sStatusMessage = "Open cancelled during model name input."
         Else
             'OPEN
-            If _model.OpenFromSettings() Then
+            If $objModel.OpenFromSettings() Then
 
                 sStatusMessage = "Opened '" & response & "'."
             Else
                 'clear model on failure; NEW
-                _model = New SomeModel(Me, "_model")
-                _model.RefreshModel
+                $objModel = New SomeModel(Me, "$objModel")
+                $objModel.RefreshModel
                 Error.Raise("Unable to Open: '" & response & "'")
             Endif
         Endif
@@ -453,10 +478,10 @@ Public Sub FileSave(Optional bSaveAs As Boolean = False)
         Action["FileSave"].Enabled = False
     Endif
 
-    If IsNull(_model.Key) Or bSaveAs Then
+    If IsNull($objModel.Key) Or bSaveAs Then
         response = InputBox("Enter Name for model:", "Save As...", Null)
         If Not IsNull(response) Then
-            _model.Key = response
+            $objModel.Key = response
         Else
             bCancel = True
         Endif
@@ -466,8 +491,8 @@ Public Sub FileSave(Optional bSaveAs As Boolean = False)
         sStatusMessage = "Save cancelled during model name input."
     Else
         'SAVE
-        _model.SaveToSettings 'TODO:if saveas, read and if already present, prompt to replace
-        sStatusMessage = "Saved '" & _model.Key & "'."
+        $objModel.SaveToSettings 'TODO:if saveas, read and if already present, prompt to replace
+        sStatusMessage = "Saved '" & $objModel.Key & "'."
     Endif
 
 Finally
@@ -516,8 +541,8 @@ Public Sub FileExit()
     lblStatusMessage.Text = ""
     lblErrorMessage.Text = ""
 
-    If Not IsNull(_model) Then
-        If _model.Dirty Then
+    If Not IsNull($objModel) Then
+        If $objModel.Dirty Then
             'prompt before saving
             Select Case Message.Question("Save changes?", "&Yes", "&No")
                 Case 1
