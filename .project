@@ -1,13 +1,14 @@
 # Gambas Project File 3.0
 Title=Gambas Gui Gtk3
 Startup=Main
-Version=0.0.21
+Version=0.0.22
 Component=gb.args
 Component=gb.image
 Component=gb.gtk3
 Component=gb.form
 Component=gb.settings
 Component=gb.form.mdi
+Library=:stephensepan/DockAnchor:0.0
 Description="Hello World GUI (Gtk3)"
 Arguments=[["f","file","some file param"]]
 CurrentArgument=0

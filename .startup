@@ -2,7 +2,7 @@ Main
 Gambas Gui Gtk3
 0
 0
-0.0.21
+0.0.22
 
 gb.args
 gb.image
@@ -10,4 +10,5 @@ gb.gtk3
 gb.form
 gb.settings
 gb.form.mdi
+:stephensepan/DockAnchor:0.0
 
