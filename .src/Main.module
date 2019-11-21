@@ -19,11 +19,10 @@ Public Function Main() As Integer
     frmMainForm = New FMain(Null)
     iResult = frmMainForm.ShowModal()
 
-    Print "FMain: " & iResult
+    Print Subst("FMain: &1", iResult)
 
     Return iResult
 Catch
-    Debug Log.FormatError
-    Debug Error.Text
+    Debug Log.FormatError(Error.Text, Error.Where, Error.BackTrace)
 
 End

@@ -1,3 +1,6 @@
+* Sun Nov 17 2019 Stephen Sepan <ssepanus@yahoo.com> 0.4.1
+- v0.4: refactored to use Action objects to dispatch menu/button clicks.
+
 * Sun Nov 10 2019 Stephen Sepan <ssepanus@yahoo.com> 0.3.1
 - demonstrate extended Dock/Anchor to Container objects other than Form
 
