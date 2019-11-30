@@ -1,7 +1,7 @@
 ' Gambas class file
 
 ' Constants
-Private Const APP_TITLE_FORMAT As String = "&1 - Gambas GUI Qt5"
+Private Const APP_TITLE_FORMAT As String = "&1 - Gambas GUI Gtk3"
 
 ' #Region "Declarations"
 Private $objStatusBarViewModel As StatusBarViewModel
