@@ -1,7 +1,7 @@
 # Gambas Project File 3.0
 Title=Gambas Gui Gtk3
 Startup=Main
-Version=0.14.1
+Version=0.14.2
 Component=gb.args
 Component=gb.image
 Component=gb.gtk3
@@ -26,7 +26,7 @@ Address=ssepanus@yahoo.com
 Url=https://www.linkedin.com/in/stephen-j-sepan-56284511/
 License=General Public License
 Prefix=1
-PackageName=sjsepan-gambasguigtk3-0.14.1
+PackageName=sjsepan-gambasguigtk3-0.14.2
 CreateEachDirectory=1
 Packager=1
 Systems=ubuntu

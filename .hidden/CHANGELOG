@@ -1,3 +1,6 @@
+* Wed Dec 11 2019 Stephen Sepan <ssepanus@yahoo.com> 0.14.2
+- copy changes for main module too
+
 * Wed Dec 11 2019 Stephen Sepan <ssepanus@yahoo.com> 0.14.1
 - v0.14: perform internationalization check of all strings in code
 - v0.13: remove unused control references;v0.12: fix settings key name save; add
